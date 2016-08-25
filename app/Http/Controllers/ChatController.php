@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Contracts\Cache\Repository as Cache;
 
-class IndexController extends Controller
+class ChatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,17 +17,7 @@ class IndexController extends Controller
     public function index()
     {
         //
-//        LPUSH list1 "foo"
-//        for($i=10;$i<20;$i++){
-//            Redis::rpush('list1',"foo".$i);
-//        }
-//        $values=Redis::lrange('list1',7,12);
-//        dump($values);
-        
-//        Redis::HSET("user","name","moz");
-        
-        exit;
-        return view("index")->with("aaa","welcome my larcache");
+        return view("chat/index");
     }
 
     /**

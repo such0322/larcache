@@ -14,8 +14,10 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\Inspire::class,
+        \App\Console\Commands\HelloLaravelAcademy::class,
+        \App\Console\Commands\RedisSubscribe::class,
     ];
-
+    
     /**
      * Define the application's command schedule.
      *

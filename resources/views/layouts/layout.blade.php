@@ -10,9 +10,15 @@ and open the template in the editor.
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>App Name - @yield('title')</title>
-        <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{asset('/css/jquery-ui.min.css') }}" rel="stylesheet" type="text/css">
         <script src="{{asset('/js/jquery.min.js')}}"></script>
+        <script src="{{asset('/js/jquery-ui.min.js')}}"></script>
         <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset("/build/react.js")}}"></script>
+        <script src="{{asset("/build/react-dom.js")}}"></script>
+        <script src="{{asset("/build/browser.min.js")}}"></script>
+        
     </head>
     <body>
         <nav class="navbar navbar-default">

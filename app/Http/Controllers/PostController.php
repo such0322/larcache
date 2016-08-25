@@ -83,6 +83,10 @@ class PostController extends Controller {
         return $view;
     }
     
+    public function showAllCount(){
+        Redis::get();
+    }
+    
     public function showRandom(){
         $id=  rand(1, 603101);
         $st = microtime(1);
