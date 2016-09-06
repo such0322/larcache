@@ -44,6 +44,16 @@ Route::group(['prefix' => 'ym'], function() {
     Route::get("login", "YoumengTestController@login");
     Route::get("userInfo", "YoumengTestController@userInfo");
     Route::get("userUpdate", "YoumengTestController@userUpdate");
+    Route::get("topicList", "YoumengTestController@topicList");
+    Route::get("topicCate", "YoumengTestController@topicCate");
+    Route::get("topicCateList", "YoumengTestController@topicCateList");
+    Route::get("topicSearch", "YoumengTestController@topicSearch");
+    Route::get("topicCreate", "YoumengTestController@topicCreate");
+    
+    Route::get("feedList", "YoumengTestController@feedList");
+    Route::get("feedCreate", "YoumengTestController@feedCreate");
+    Route::get("feedSearch", "YoumengTestController@feedSearch");
+    
 });
 
 Route::group(['prefix' => 'react'], function() {
@@ -57,5 +67,13 @@ Route::group(['prefix' => 'react'], function() {
     Route::get("dataReturn", "ReactTestController@dataReturn");
     Route::get("test7", "ReactTestController@test7");
     Route::post("dataReturn", "ReactTestController@dataReturnPost");
+    Route::get("test8", "ReactTestController@test8");
 });
 
+
+//Route::group(["prefix"=>"stringy"],function(){
+//    Route::get("index","StringyController@index");
+//});
+Route::controller("stringy","StringyController");
+
+Route::controller("article","ArticleController");

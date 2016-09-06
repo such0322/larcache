@@ -183,7 +183,9 @@ var GameBoard = React.createClass({
         return board;
     },
     newGame:function(){
-        this.setState(this.getInitialState());
+        var aaa=this.getInitialState();
+        console.log(aaa)
+        this.setState(aaa);
     },
     undo:function(){
         if(this.state.boards.length>1){

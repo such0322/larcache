@@ -135,7 +135,7 @@ var CommentBox = React.createClass({
     render: function () {
         return (
                 < div className = "commentBox" >
-                < h1 > Comments < /h1>
+                < h1 ref="aa" > Comments < /h1>
                 < CommentList data = {this.state.data} / >
                 <CommentForm onCommentSubmit={this.handleCommentSubmit} />
                 < /div>
@@ -154,3 +154,21 @@ ReactDOM.render(
         document.getElementById('content')
 );
 
+
+var T11 =React.createClass({
+    
+    handleClick:function(a){
+        var aa=ReactDOM.findDOMNode("aa")
+        console.log(aa);
+    },
+    render:function(){
+        return (<div className="pull-right btn btn-default" onClick={this.handleClick.bind(this,1)}>{this.props.children}
+                </div>
+                );
+    }
+})
+
+ReactDOM.render(
+        <T11>测试</T11>,
+        document.getElementById('content2')
+);

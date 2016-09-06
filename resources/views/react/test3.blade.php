@@ -54,4 +54,16 @@
 <div class="col-sm-9" id="content">
 
 </div>
-<script type="text/babel" src="{{asset("/js/ri.js")}}"></script>
+<script>
+var abc = {aa: null, bb: null, cc: null, dd: null, aa1: null, bb1: null, cc1: null, dd1: null};
+
+function set_t(board, loc, tof) {
+    board[loc] = tof;
+    return board
+}
+
+console.log(abc)
+set_t(abc, "aa", 2);
+</script>
+
+<!--<script type="text/babel" src="{{asset("/js/test3.js")}}"></script>-->

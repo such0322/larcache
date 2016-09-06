@@ -16,7 +16,7 @@ class ReactTestController extends Controller {
      */
     public function index() {
         //
-
+        
         return view("react/index")->with("aaa", "welcome my larcache");
     }
 
@@ -67,8 +67,12 @@ class ReactTestController extends Controller {
         }else{
             echo json_decode(array("message"=>"失败","error"=>1));
         }
-        
-        
     }
+    
+    public function test8(){
+        return view("react/test8");
+    }
+    
+    
 
 }

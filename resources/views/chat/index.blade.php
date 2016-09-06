@@ -7,7 +7,7 @@
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" name="viewport">
         <title>多人聊天室</title>
         <link href="{{asset('/socket/style.css') }}" rel="stylesheet" type="text/css">
-        <script src="http://10.5.162.85:3000/socket.io/socket.io.js"></script>
+        <script src="http://10.5.162.125:3000/socket.io/socket.io.js"></script>
     </head>
     <body>
         <div id="loginbox">
