@@ -10,7 +10,7 @@ class Article extends Model {
 
     const ONE_WEEK_IN_SECONDS = 7 * 86400;
     const VOTE_SCORE = 432;
-    const ARTICLES_PRE_PAGE=25;
+    const ARTICLES_PRE_PAGE=10;
 
     //投票
     public function artice_vote($user, $article) {
@@ -92,7 +92,6 @@ class Article extends Model {
             R::EXPIRE($key,60);
         }
         return $this->get_articles($page,$key);
-        
     }
 
 }

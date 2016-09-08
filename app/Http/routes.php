@@ -77,3 +77,12 @@ Route::group(['prefix' => 'react'], function() {
 Route::controller("stringy","StringyController");
 
 Route::controller("article","ArticleController");
+
+Route::group(['namespace' => 'Blog','prefix' => 'blog'],function(){
+    Route::resource("/","ArticleController",['except' => ['create', 'store','show','edit', 'update', 'destroy']]);
+    Route::controller("api","ApiController");
+    
+    Route::group(['prefix' => 'user'],function(){
+        Route::get("create","UserController@create");
+    });
+});
