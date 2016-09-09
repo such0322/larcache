@@ -14,4 +14,10 @@ class ApiController extends Controller {
         $rslist=$Art->get_articles($page);
         echo json_encode($rslist);
     }
+    
+    public function getTest(Request $request){
+        
+    }
+    
+
 }

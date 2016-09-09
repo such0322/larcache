@@ -18,7 +18,8 @@ and open the template in the editor.
         <script src="{{asset("/build/react.js")}}"></script>
         <script src="{{asset("/build/react-dom.js")}}"></script>
         <script src="{{asset("/build/browser.min.js")}}"></script>
-        
+        <script src="{{asset("/js/blog/common.js")}}"></script>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -59,7 +60,8 @@ and open the template in the editor.
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Link</a></li>
+                        <li><a href="{{asset("/blog/user/create")}}">注册</a></li>
+                        <li><a href="{{asset("/blog/user/login")}}">登录</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu">

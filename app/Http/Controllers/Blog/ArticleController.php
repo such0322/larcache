@@ -15,9 +15,6 @@ class ArticleController extends Controller {
      */
     public function index() {
         
-        $context="http://e.clinique.cn.mzhong.eng.ncsa6.elcdev.net";
-        $hub = '_' . str_replace('/', ':', $context);
-        dump($hub);
         //
         return view("blog/index");
     }

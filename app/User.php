@@ -38,19 +38,21 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
     
+    protected $dateFormat = 'U';
+    
     const QUIT=false;
     const LIMIT=10000000;
-
-        public static function check_token($token){
+    
+    public static function check_token($token){
         return R::HGET("login:",$token);
     }
     
     public static function update_token($token,$user,$item=null){
         $timestamp=  time();
         R::HSET("login:",$token,$user);
-        R::ZADD("recent;",$token,$timestamp);
+        R::ZADD("recent:",$timestamp,$token);
         if($item){
-            R::ZADD("viewed:".$token,$item,$timestamp);
+            R::ZADD("viewed:".$token,$timestamp,$item);
             R::ZREMRANGEBYRANK("viewed:".$token,0,-26);
         }
     }

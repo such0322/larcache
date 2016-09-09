@@ -84,5 +84,7 @@ Route::group(['namespace' => 'Blog','prefix' => 'blog'],function(){
     
     Route::group(['prefix' => 'user'],function(){
         Route::get("create","UserController@create");
+        Route::post("create","UserController@store");
+        Route::get("login","UserController@login");
     });
 });

@@ -9,11 +9,11 @@ var d = document;
 
 var UserForm=React.createClass({
     getInitialState: function() {
-      return {username: '', password: '',repassword:"",username_group:""};
+      return {username: '', password: '',repassword:"",username_group:"",password_group:"",repassword_group:""};
     },
     handleUsernameChange:function(e){
         var value=e.target.value;
-        var group_has=value==""?"has-error":"has-success"
+        var group_has=value==""?"has-error":""
         this.setState({username:value});
         this.setState({username_group:group_has})
     },
@@ -21,14 +21,38 @@ var UserForm=React.createClass({
         this.setState({password: e.target.value});
     },
     handleRepasswordChange:function(e){
-        this.setState({repassword: e.target.value});
+        var value=e.target.value;
+        var group_has=value!==this.state.password?"has-error":"has-success";
+        this.setState({repassword:value});
+        this.setState({repassword_group:group_has})
     },
     handleSubmit:function(e){
         e.preventDefault();
         var username=this.state.username.trim();
         var password=this.state.password;
         var repassword=this.state.password;
-        console.log(username)
+        if(password===repassword && username!=""){
+            this.doSubmit(username,password);
+        }
+    },
+    doSubmit:function(username,password){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.post("/larcache/public/blog/user/create",{
+            username:username,
+            password:password
+        },function(data,status){
+            data=$.parseJSON(data);
+            if(data.status==1){
+                $.setCookie("user_token",data.token);
+                window.location.href="/larcache/public/blog"; 
+            }else{
+                this.setState({username_group:"has-error"})
+            }
+        }.bind(this));
     },
     render:function(){
         return (<div className="col-sm-12">
@@ -42,13 +66,13 @@ var UserForm=React.createClass({
                 <div className="form-group">
                     <label htmlFor="inputPassword" className="col-sm-4 control-label">密码</label>
                     <div className="col-sm-4">
-                        <input type="password" className="form-control" id="inputPassword" placeholder="Password" />
+                        <input type="password" className="form-control" id="inputPassword" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange}/>
                     </div>
                 </div>
-                <div className="form-group">
+                <div className={"form-group "+this.state.repassword_group}>
                     <label htmlFor="inputRePassword" className="col-sm-4 control-label">再次密码</label>
                     <div className="col-sm-4">
-                        <input type="password" className="form-control" id="inputRePassword" placeholder="Password" />
+                        <input type="password" className="form-control" id="inputRePassword" placeholder="Password" value={this.state.repassword} onChange={this.handleRepasswordChange} />
                     </div>
                 </div>
                 <div className="form-group">
@@ -64,5 +88,5 @@ var UserForm=React.createClass({
 
 ReactDOM.render(
         <UserForm />,
-        document.getElementById('content')
+        d.getElementById('content')
 );

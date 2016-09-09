@@ -9,7 +9,6 @@ var d = document;
 
 var Article=React.createClass({
     render:function(){
-        console.log(this.props.data)
         return (<div className="col-sm-12" style={{marginBottom:"10px"}} >
                     <div className="col-sm-2">
                         <button className="btn btn-default col-sm-12">up</button>
