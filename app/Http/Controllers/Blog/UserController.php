@@ -60,6 +60,30 @@ class UserController extends Controller {
     public function login(){
         return view("blog/user/login");
     }
+    
+    public function dologin(Request $request){
+        $username=$request->input("username");
+        $password=$request->input("password");
+        if($username =="" || $password==""){
+            echo json_encode(array("status"=>"0","message"=>"账号密码不能为空"));
+            exit;
+        }
+        $user=User::select("id","username")->where("username",$username)->where("password",$password)->first();
+        
+        if($user){
+            $token=Crypt::encrypt($user->id);
+            User::update_token($token, $user);
+            echo json_encode(array("status"=>"1","token"=>$token));
+        }else{
+            echo json_encode(array("status"=>"0","message"=>"账户密码错误"));
+        }
+        
+    }
+    
+    public function logout(Request $request){
+        setcookie("user_token", "", time()-1, "/");
+        return redirect($request->header("referer"));
+    }
 
     /**
      * Display the specified resource.

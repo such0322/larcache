@@ -26,5 +26,4 @@ $.extend({
         if(cval!=null)
         document.cookie= name + "="+cval+";expires="+exp.toGMTString();
     },
-    
 })

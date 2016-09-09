@@ -60,8 +60,12 @@ and open the template in the editor.
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
+                        @if (!isset($user))
                         <li><a href="{{asset("/blog/user/create")}}">注册</a></li>
                         <li><a href="{{asset("/blog/user/login")}}">登录</a></li>
+                        @else
+                        <li><a href="{{asset("/blog/user/logout")}}">登出</a></li>
+                        @endif
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu">
