@@ -92,12 +92,29 @@ Route::group(['namespace' => 'Blog','prefix' => 'blog'],function(){
     });
 });
 
-
+//设计模式
 Route::group(['prefix' => 'DesignPatterns'],function(){
+    //门面
     Route::get("DPFacade","DesignPatternsController@DPFacade");
+    //依赖注入
     Route::get("DITest","DesignPatternsController@DITest");
+    //单例
     Route::get("SingletonTest","DesignPatternsController@SingletonTest");
-//    SFTest
+//    SFTest 简单工厂
     Route::get("SFTest","DesignPatternsController@SFTest");
+    //工厂
     Route::get("FMTest","DesignPatternsController@FMTest");
+//    AFTest 抽象工厂
+    Route::get("AFTest","DesignPatternsController@AFTest");
+//    ProxyTest 代理
+    Route::get("ProxyTest","DesignPatternsController@ProxyTest");
+//    ObserverTest 观察者
+    Route::get("ObserverTest","DesignPatternsController@ObserverTest");
+//    StrategyTest 策略
+    Route::get("StrategyTest","DesignPatternsController@StrategyTest");
+//    DecoratorTest 装饰
+    Route::get("DecoratorTest","DesignPatternsController@DecoratorTest");
+//    AdapterTest 适配器
+    Route::get("AdapterTest","DesignPatternsController@AdapterTestt");
+    
 });
