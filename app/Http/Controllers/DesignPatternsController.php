@@ -16,8 +16,116 @@ use App\DesignPatterns\FactoryMethod\FactoryMethod as FM;
 use App\DesignPatterns\FactoryMethod\ItalianFactory;
 use App\DesignPatterns\FactoryMethod\GermanFactory;
 
-class DesignPatternsController extends Controller {
+use App\DesignPatterns\AbstractFactory\AbstractFactory;
+use App\DesignPatterns\AbstractFactory\HtmlFactory;
+use App\DesignPatterns\AbstractFactory\JsonFactory;
 
+use App\DesignPatterns\Proxy\Record;
+use App\DesignPatterns\Proxy\RecordProxy;
+
+use App\DesignPatterns\Observer\User;
+use App\DesignPatterns\Observer\UserObserver;
+
+use App\DesignPatterns\Strategy\ObjectCollection;
+use App\DesignPatterns\Strategy\IdComparator;
+use App\DesignPatterns\Strategy\DateComparator;
+
+use App\DesignPatterns\Decorator;
+
+use App\DesignPatterns\Adapter\Book;
+use App\DesignPatterns\Adapter\EBookAdapter;
+use App\DesignPatterns\Adapter\Kindle;
+use App\DesignPatterns\Adapter\EBookInterface;
+
+class DesignPatternsController extends Controller {
+    
+    public function AdapterTest(){
+        $book=new Book();
+        $ebook=new EBookAdapter(new Kindle());
+        
+        $book->open();
+        $ebook->open();
+        
+        $book->turnPage();
+        $ebook->turnPage();
+        
+    }
+    
+    public function DecoratorTest(){
+        $service=new Decorator\Webservice(array("foo"=>'bar'));
+        
+        $jonSer=new Decorator\RenderInJson($service);
+        dump($jonSer->aaa());
+    }
+    
+    public function StrategyTest(){
+        $arr1=array(array('id' => 2), array('id' => 1), array('id' => 3));
+        $obj1=new ObjectCollection($arr1);
+        $obj1->setComparator(new IdComparator());
+        $rs1=$obj1->sort();
+        dump($rs1);
+        
+        
+        
+        $arr2=array(array('date' => '2014-03-03'), array('date' => '2015-03-02'), array('date' => '2013-03-01'));
+        $obj2=new ObjectCollection($arr2);
+        $obj2->setComparator(new DateComparator());
+        $rs2=$obj2->sort();
+        dump($rs2);
+        
+    }
+    
+    public function ObserverTest(){
+        $observer=new UserObserver();
+        
+        //测试通知
+//        $subject = new User();
+//        $subject->property =123;
+        
+        //测试订阅
+        $subject = new User();
+        $reflection = new \ReflectionProperty($subject, 'observers');
+        $reflection->setAccessible(true);
+        dump($reflection);
+        $observers = $reflection->getValue($subject);
+        dump($observer);
+        
+        $subject->attach($observer);
+//        $aaa=$subject->detach($observer);
+        dump($subject);
+        
+        
+        //测试 update() 调用
+        $subject->notify();
+    }
+    
+    public function ProxyTest (){
+        $data=[];
+        $record=new Record();
+        $record->xyz="aa";
+        dump($record);
+        
+        $proxy=new RecordProxy(null);
+        dump($proxy);
+        $proxy->xyz=false;
+        dump($proxy);
+        dump($proxy->xyz);
+    }
+
+    public function AFTest(){
+        $html=new HtmlFactory();
+        $pic1=$html->createPicture(asset("img/a.jpg"),"abc");
+        $text1=$html->createText("asdfaksdjfkajfdklasjfa");
+        echo $pic1->render();
+        echo $text1->render();
+        
+        $json=new JsonFactory();
+        $pic2=$json->createPicture(asset("img/a.jpg"),"cba");
+        $text2=$json->createText("12312312312312312313");
+        echo $pic2->render();
+        echo $text2->render();
+    }
+    
     public function FMTest() {
         $type = array(
             FM::CHEAP,
