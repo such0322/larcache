@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Blog;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Article;
+use App\User;
 
 class ArticleController extends Controller {
 
@@ -25,7 +27,7 @@ class ArticleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        //
+        return view("blog/create");
     }
 
     /**
@@ -36,6 +38,22 @@ class ArticleController extends Controller {
      */
     public function store(Request $request) {
         //
+        $token=$_COOKIE['user_token'];
+        $user=User::check_token($token);
+        
+        $title=$request->input("title");
+        $content=$request->input("content");
+        $Art=new Article();
+        $Art->title=$title;
+        $Art->content=$content;
+        $Art->poster=$user->id;
+        $aid=$Art->post_artice();
+        if($aid){
+            echo json_encode(array("status"=>1,"aid"=>$aid));
+        }else{
+            echo json_encode(array("status"=>0,"message"=>"创建失败"));
+        }
+        
     }
 
     /**

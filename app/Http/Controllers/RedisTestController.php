@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Game;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Cache\MemcachedConnector as Mem;
 
 class RedisTestController extends Controller {
 

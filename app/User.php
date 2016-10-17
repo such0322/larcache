@@ -44,7 +44,8 @@ class User extends Model implements AuthenticatableContract,
     const LIMIT=10000000;
     
     public static function check_token($token){
-        return R::HGET("login:",$token);
+        $user=R::HGET("login:",$token);
+        return json_decode($user);
     }
     
     public static function update_token($token,$user,$item=null){

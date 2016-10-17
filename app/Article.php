@@ -11,7 +11,7 @@ class Article extends Model {
     const ONE_WEEK_IN_SECONDS = 7 * 86400;
     const VOTE_SCORE = 432;
     const ARTICLES_PRE_PAGE=10;
-
+    
     //投票
     public function artice_vote($user, $article) {
         //计算投票截止时间
@@ -30,29 +30,26 @@ class Article extends Model {
     }
 
     //发布文章
-    public function post_artice($user, $title, $link) {
+    public function post_artice() {
         //自增id
         $aid = R::INCR("article:");
-
+        $rid="article:".$aid;
         //投票表,默认自己已投票,可投票时间为7天
         $voted = "voted:" . $aid;
-        R::SADD($voted, $user);
+        R::SADD($voted, $this->poster);
         R::EXPIRE($voted, self::ONE_WEEK_IN_SECONDS);
 
         //文章详情添加
         $now = time();
-        $article = "article:" . $aid;
-        R::HMSET($article, [
-            'title' => $title,
-            "link" => $link,
-            "poster" => $user,
-            "time" => $now,
-            "votes" => 1,
-        ]);
-
+        $this->id=$aid;
+        $this->time=$now;
+        $this->votes=1;
+        
+        R::HMSET($rid, $this->toArray());
+        
         //增加分数,时间,用于排序
-        R::ZADD("score:", $now + self::VOTE_SCORE, $article);
-        R::ZADD("time:", $now, $article);
+        R::ZADD("score:", $now + self::VOTE_SCORE, $rid);
+        R::ZADD("time:", $now, $rid);
         return $aid;
     }
     

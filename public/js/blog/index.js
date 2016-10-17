@@ -16,7 +16,7 @@ var Article=React.createClass({
                     </div>
                     <div className="col-sm-9">
                         <h4>{this.props.data.title}</h4>
-                        <p></p>
+                        <p>{this.props.data.content}</p>
                     </div>
                     <div className="col-sm-1">
                         <button type="button" className="btn btn-default pull-right">{this.props.data.votes}</button>

@@ -79,7 +79,8 @@ Route::controller("stringy","StringyController");
 Route::controller("article","ArticleController");
 
 Route::group(['namespace' => 'Blog','prefix' => 'blog'],function(){
-    Route::resource("/","ArticleController",['except' => ['create', 'store','show','edit', 'update', 'destroy']]);
+    Route::resource("/","ArticleController",['except' => ['show','edit', 'update', 'destroy']]);
+    
     Route::controller("api","ApiController");
     
     Route::group(['prefix' => 'user'],function(){
@@ -89,4 +90,9 @@ Route::group(['namespace' => 'Blog','prefix' => 'blog'],function(){
         Route::post("login","UserController@dologin");
         Route::get("logout","UserController@logout");
     });
+});
+
+
+Route::group(['prefix' => 'DesignPatterns'],function(){
+    Route::get("DPFacade","DesignPatternsController@DPFacade");
 });

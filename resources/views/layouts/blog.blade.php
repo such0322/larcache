@@ -64,12 +64,13 @@ and open the template in the editor.
                         <li><a href="{{asset("/blog/user/create")}}">注册</a></li>
                         <li><a href="{{asset("/blog/user/login")}}">登录</a></li>
                         @else
+                        <li><a>欢迎:{{$user->username}}</a></li>
                         <li><a href="{{asset("/blog/user/logout")}}">登出</a></li>
                         @endif
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
+                                <li><a href="{{asset("/blog/create")}}">newBlog</a></li>
                                 <li><a href="#">Another action</a></li>
                                 <li><a href="#">Something else here</a></li>
                                 <li role="separator" class="divider"></li>

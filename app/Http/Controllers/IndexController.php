@@ -27,9 +27,9 @@ class IndexController extends Controller
 //        dump($values);
         
 //        Redis::HSET("user","name","moz");
-        
-        exit;
-        return view("index")->with("aaa","welcome my larcache");
+//        $aaa=base64_decode('cGhw');
+//        dump($aaa);
+//        return view("index")->with("aaa","welcome my larcache");
     }
 
     /**
