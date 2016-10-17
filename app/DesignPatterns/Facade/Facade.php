@@ -5,8 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-namespace DesignPatterns\Structural\Facade;
+namespace App\DesignPatterns\Facade;
 
 /**
  * Description of Facade
@@ -57,5 +56,12 @@ class Facade{
         $this->os->halt();
         $this->bios->powerDown();
     }
-    
+    public function dosome($num){
+        $i=0;
+        while ($i<$num){
+            echo "运行中...</br>";
+            $i++;
+        }
+            
+    }
 }

@@ -95,4 +95,9 @@ Route::group(['namespace' => 'Blog','prefix' => 'blog'],function(){
 
 Route::group(['prefix' => 'DesignPatterns'],function(){
     Route::get("DPFacade","DesignPatternsController@DPFacade");
+    Route::get("DITest","DesignPatternsController@DITest");
+    Route::get("SingletonTest","DesignPatternsController@SingletonTest");
+//    SFTest
+    Route::get("SFTest","DesignPatternsController@SFTest");
+    Route::get("FMTest","DesignPatternsController@FMTest");
 });
