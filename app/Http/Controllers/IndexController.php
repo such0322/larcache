@@ -18,6 +18,7 @@ class IndexController extends Controller
      */
     public function index()
     {
+		echo "this is test11";
         //
 //        LPUSH list1 "foo"
 //        for($i=10;$i<20;$i++){
